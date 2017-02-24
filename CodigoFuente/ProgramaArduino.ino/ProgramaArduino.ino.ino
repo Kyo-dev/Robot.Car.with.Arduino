@@ -11,10 +11,10 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  Sensor(); 
+
 }
 
-void Sensor(){
+void Sensor(){ // No esta instanciado en loop
   //sensor ultrasonico
   
   digitalWrite(9,LOW);
@@ -34,3 +34,5 @@ void Sensor(){
   }
 }
 // FUNCIONALIDAD DE LOS MOTORES
+
+
