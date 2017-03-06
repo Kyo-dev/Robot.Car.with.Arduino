@@ -1,5 +1,12 @@
+//VARIABLES DEL SENSOR
 long dist;
 long tiempo;
+
+// MOTOR IZQUIERDO
+int IN1 = 3;
+int IN2 = 2;
+
+// MOTOR DERECHO
 int IN3 = 5; 
 int IN4 = 4;
 
@@ -9,18 +16,15 @@ void setup() {
   pinMode(8,INPUT);
   pinMode(9, OUTPUT);
   pinMode (13,OUTPUT);
-  pinMode (IN4, OUTPUT);    // Input4 conectada al pin 4 
-  pinMode (IN3, OUTPUT); // Input3 conectada al pin 5
 }
 
 void loop() {
+  // put your main code here, to run repeatedly:
   Run();
 }
 
 void Sensor(){ // No esta instanciado en loop
-  
-  //sensor ultrasonico
-  
+  //SENSOR ULTRASONICO
   digitalWrite(9,LOW);
   delayMicroseconds(5);
   digitalWrite(9, HIGH);
@@ -37,8 +41,9 @@ void Sensor(){ // No esta instanciado en loop
     digitalWrite(13,LOW);
   }
 }
+
 // FUNCIONALIDAD DE LOS MOTORES
-void Run (){
+void Run(){
   digitalWrite (IN4, HIGH);
   digitalWrite (IN3, LOW); 
   delay(4000);
@@ -52,3 +57,4 @@ void Run (){
   digitalWrite (IN3, LOW); 
 delay(5000);
 }
+
