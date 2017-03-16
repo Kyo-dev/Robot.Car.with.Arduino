@@ -6,6 +6,8 @@ int Contor_In2 = 6;
 int Contor_In3 = 3;
 int Contor_In4 = 4;
 
+// VARIABLES PARA CONTROLAR EL SENSOR ULTRASONICO O DE PROXIMIDAD
+
 void setup() {
   // PIN DE LOS MOTORES
   pinMode(Contor_In1, OUTPUT);
@@ -15,9 +17,9 @@ void setup() {
 
   // PIN PARA EL SENSOR DE PROXIMIDAD
   Serial.begin(9600);
-  pinMode(8,INPUT);
-  pinMode(9, OUTPUT);
-  pinMode (13,OUTPUT);
+  pinMode(9,INPUT); //9 ENTRADA DE DATOS ECO
+  pinMode(8, OUTPUT); //10 SALIDA DE DATOS
+  pinMode (13,OUTPUT); // LED
 }
 
 void loop() {
@@ -51,9 +53,25 @@ void Run(){
   digitalWrite(Contor_In4, LOW);
 }
 
+void Stop(){
+  digitalWrite(Contor_In1, LOW);
+  digitalWrite(Contor_In2, LOW);
+  digitalWrite(Contor_In3, LOW);
+  digitalWrite(Contor_In4, LOW);
+}
+
+void Right{
+  digitalWrite(Contor_In1, LOW);
+  digitalWrite(Contor_In2, HIGH);
+  digitalWrite(Contor_In3, HIGH);
+  digitalWrite(Contor_In4, LOW);
+}
+
 void Left(){
   digitalWrite(Contor_In1, HIGH);
   digitalWrite(Contor_In2, LOW);
   digitalWrite(Contor_In3, LOW);
   digitalWrite(Contor_In4, HIGH);
 }
+
+// CODIGO BLUETOOTH
