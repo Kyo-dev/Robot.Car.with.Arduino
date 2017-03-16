@@ -66,8 +66,8 @@ void Run(){
 void Reverse(){
   digitalWrite(Contor_In1, LOW);
   digitalWrite(Contor_In2, HIGH);
-  digitalWrite(Contor_In3, LOW);
-  digitalWrite(Contor_In4, HIGH);
+  digitalWrite(Contor_In3, HIGH);
+  digitalWrite(Contor_In4, LOW);
 }
 
 void Stop(){
