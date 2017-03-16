@@ -26,7 +26,6 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   Run();
   Sensor();
 
@@ -48,6 +47,18 @@ void Sensor(){ // No esta instanciado en looP
     delay(1000);
     Reverse();
     delay(1000);
+    int decision;
+    if(){ // buscar metodo para un Math.random entre 1 y 0 en arduino
+      Left();
+      delay(1000);
+      Stop();
+      delay(500);
+    } else {
+      Right();
+      delay(1000);
+      Stop();
+      delay(500);
+    }
   } 
 }
 
