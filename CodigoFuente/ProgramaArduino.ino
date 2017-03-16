@@ -48,6 +48,7 @@ void Sensor(){ // No esta instanciado en looP
     Reverse();
     delay(1000);
     int decision;
+    /*
     if(){ // buscar metodo para un Math.random entre 1 y 0 en arduino
       Left();
       delay(1000);
@@ -59,6 +60,7 @@ void Sensor(){ // No esta instanciado en looP
       Stop();
       delay(500);
     }
+    */
   } 
 }
 
