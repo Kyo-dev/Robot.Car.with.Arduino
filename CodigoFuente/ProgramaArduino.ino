@@ -49,10 +49,7 @@ void Sensor(){ // No esta instanciado en looP
     delay(1000);
     Reverse();
     delay(1000);
-  } else{
-    digitalWrite(13,LOW);
-    
-  }
+  } 
 }
 
 // FUNCIONALIDAD DE LOS MOTORES
@@ -66,8 +63,8 @@ void Run(){
 void Reverse(){
   digitalWrite(Contor_In1, LOW);
   digitalWrite(Contor_In2, HIGH);
-  digitalWrite(Contor_In3, HIGH);
-  digitalWrite(Contor_In4, LOW);
+  digitalWrite(Contor_In3, LOW;
+  digitalWrite(Contor_In4, HIGH);
 }
 
 void Stop(){
@@ -90,5 +87,4 @@ void Left(){
   digitalWrite(Contor_In3, LOW);
   digitalWrite(Contor_In4, HIGH);
 }
-
 // CODIGO BLUETOOTH
