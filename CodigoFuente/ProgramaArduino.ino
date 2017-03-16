@@ -5,13 +5,6 @@ int Contor_In2 = 6;
 // CONTROL DEL MOTOR IZQUIERDO
 int Contor_In3 = 3;
 int Contor_In4 = 4;
-// CONTROL DEL MOTOR DERECHO
-int Contor_In1 = 7;
-int Contor_In2 = 6;
-
-// CONTROL DEL MOTOR IZQUIERDO
-int Contor_In3 = 3;
-int Contor_In4 = 4;
 
 // VARIABLES PARA CONTROLAR EL SENSOR ULTRASONICO O DE PROXIMIDAD
 long dist;
@@ -34,11 +27,13 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  // Run();
+  Run();
   Sensor();
+
 }
 // FUNCIONALIDAD DEL SENSOR
 void Sensor(){ // No esta instanciado en looP
+  bool active = false;
   digitalWrite(8,LOW);
   delayMicroseconds(5);
   digitalWrite(8, HIGH);
@@ -50,9 +45,13 @@ void Sensor(){ // No esta instanciado en looP
   Serial.println(" cm/hr");
   delay(1000);
   if(dist < 50){
-    digitalWrite(13,HIGH);
+    Stop();
+    delay(1000);
+    Reverse();
+    delay(1000);
   } else{
     digitalWrite(13,LOW);
+    
   }
 }
 
@@ -60,8 +59,15 @@ void Sensor(){ // No esta instanciado en looP
 void Run(){
   digitalWrite(Contor_In1, HIGH);
   digitalWrite(Contor_In2, LOW);
-  digitalWrite(Contor_In3, HIGH);
-  digitalWrite(Contor_In4, LOW);
+  digitalWrite(Contor_In3, LOW);
+  digitalWrite(Contor_In4, HIGH);
+}
+
+void Reverse(){
+  digitalWrite(Contor_In1, LOW);
+  digitalWrite(Contor_In2, HIGH);
+  digitalWrite(Contor_In3, LOW);
+  digitalWrite(Contor_In4, HIGH);
 }
 
 void Stop(){
