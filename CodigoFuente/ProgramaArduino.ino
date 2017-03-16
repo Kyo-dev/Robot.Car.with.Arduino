@@ -33,18 +33,17 @@ void loop() {
 }
 // FUNCIONALIDAD DEL SENSOR
 void Sensor(){ // No esta instanciado en looP
-  bool active = false;
   digitalWrite(8,LOW);
   delayMicroseconds(5);
   digitalWrite(8, HIGH);
   delayMicroseconds(10);
   time = pulseIn(9, HIGH);
   dist = (0.017*time); // REVISAR LA FORMULA (CREO QUE SE TIENE QUE DIVIR ENTRE 2)
+  delay(500);
   Serial.print("Distancia: ");
   Serial.print(dist);
   Serial.println(" cm/hr");
-  delay(1000);
-  if(dist < 50){
+  if(dist < 65){
     Stop();
     delay(1000);
     Reverse();
