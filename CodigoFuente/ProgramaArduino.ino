@@ -64,6 +64,7 @@ void Sensor(){ // No esta instanciado en looP
   } 
 }
 
+
 // FUNCIONALIDAD DE LOS MOTORES
 void Run(){
   digitalWrite(Contor_In1, HIGH);
