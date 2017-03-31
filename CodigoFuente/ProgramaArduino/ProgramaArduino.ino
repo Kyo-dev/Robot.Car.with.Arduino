@@ -1,3 +1,5 @@
+#include <SoftwareSerial.h>
+
 // CONTROL DEL MOTOR DERECHO
 int Contor_In1 = 7;
 int Contor_In2 = 6;
@@ -11,6 +13,10 @@ long dist;
 long time;
 int ledPrueba = 13;
 
+//BT
+SoftwareSerial BT1(10, 11); // RX | TX
+int estado = 'g'; 
+
 void setup() {
   // PIN DE LOS MOTORES
   pinMode(Contor_In1, OUTPUT);
@@ -23,26 +29,32 @@ void setup() {
   pinMode(9,INPUT); //9 ENTRADA DE DATOS ECCO
   pinMode(8, OUTPUT); //8 SALIDA DE DATOS TRIGGER
   pinMode (13,OUTPUT); // LED DEL PIN 13
+
+  // FUNCIONES BT
+
+  BT1.begin(9600); // inicia el puerto serial para comunicacion con el Bluetooth
+  Serial.println("Esperando comandos AT:");
+  Serial.println("Activando el modulo HC-04");
 }
 
 void loop() {
   Run();
   Sensor();
-
+  bt();
 }
 // FUNCIONALIDAD DEL SENSOR
-void Sensor(){ // No esta instanciado en looP
+void Sensor(){
   digitalWrite(8,LOW);
   delayMicroseconds(5);
   digitalWrite(8, HIGH);
   delayMicroseconds(10);
   time = pulseIn(9, HIGH);
   dist = (0.017*time); // REVISAR LA FORMULA (CREO QUE SE TIENE QUE DIVIR ENTRE 2)
-  delay(100);
+  delay(1000);
   Serial.print("Distancia: ");
   Serial.print(dist);
   Serial.println(" cm/hr");
-  if(dist < 40){
+  if(dist <= 50){
     Stop();
     delay(1000);
     Reverse();
@@ -101,3 +113,41 @@ void Left(){
   digitalWrite(Contor_In3, LOW);
   digitalWrite(Contor_In4, HIGH);
 }
+
+// CONDEXION BT
+
+void bt (){
+   if(BT1.available()>0){        // lee el bluetooth y almacena en estado
+      estado = BT1.read();
+      Serial.write(BT1.read()); //opcional
+   }
+   
+   if(estado=='a'){           // Boton desplazar al Frente
+     Run();
+   }
+  
+  if(estado=='b'){          // Boton IZQ 
+     Left();   
+
+  }
+  
+  if(estado=='c'){         // Boton Parar
+     Stop();
+  }
+  
+  if(estado=='d'){          // Boton DER
+     Right(); 
+  } 
+  
+  if(estado=='e'){          // Boton Reversa
+     Reverse();
+  }
+  
+  if (estado =='f'){        // Boton ON se mueve sensando distancia 
+ 
+  }
+  
+  if  (estado=='g'){        // Boton OFF, detiene los motores no hace nada 
+  }
+}
+
