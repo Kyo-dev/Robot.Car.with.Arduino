@@ -69,28 +69,30 @@ void Sensor(){
       Left();
       delay(1000);
       Stop();
-      delay(500);
+      delay(700);
     } else if (d == 1){
       Serial.println("Girar a la derecha");
       Serial.println(d);
       Right();
       delay(1000);
       Stop();
-      delay(500);
+      delay(700);
     }
   } 
 }
 
 // FUNCIONALIDAD DE LOS MOTORES
 void Run(){
+  digitalWrite (3, LOW);
   digitalWrite(Contor_In1, HIGH);
   digitalWrite(Contor_In2, LOW);
   digitalWrite(Contor_In3, LOW);
   digitalWrite(Contor_In4, HIGH);
-  digitalWrite (3, HIGH);
+  
 }
 
 void Reverse(){
+  digitalWrite (3, LOW);
   digitalWrite(Contor_In1, LOW);
   digitalWrite(Contor_In2, HIGH);
   digitalWrite(Contor_In3, HIGH);
@@ -98,6 +100,7 @@ void Reverse(){
 }
 
 void Stop(){
+  digitalWrite (3, HIGH);
   digitalWrite(Contor_In1, LOW);
   digitalWrite(Contor_In2, LOW);
   digitalWrite(Contor_In3, LOW);
@@ -105,6 +108,7 @@ void Stop(){
 }
 
 void Right(){
+  digitalWrite (3, LOW);
   digitalWrite(Contor_In1, HIGH);
   digitalWrite(Contor_In2, LOW);
   digitalWrite(Contor_In3, LOW);
@@ -112,6 +116,7 @@ void Right(){
 }
 
 void Left(){
+  digitalWrite (3, LOW);
   digitalWrite(Contor_In1, LOW);
   digitalWrite(Contor_In2, LOW);
   digitalWrite(Contor_In3, LOW);
