@@ -36,8 +36,11 @@ void setup() {
   Serial.println("Esperando comandos AT:");
   Serial.println("Activando el modulo HC-04");
 
-  // leds
-  pinMode (3, OUTPUT);
+  // LEDS
+  pinMode (3, OUTPUT); // Luz de freno
+  pinMode (2, OUTPUT); // Luz blanca
+  pinMode (12, OUTPUT); // Intermitente Izquierda
+  pinMode (13, OUTPUT); // Intermitente Derecha
 }
 
 void loop() {
@@ -101,6 +104,8 @@ void Reverse(){
 
 void Stop(){
   digitalWrite (3, HIGH);
+  digitalWrite (12, LOW);
+  digitalWrite (13, LOW);
   digitalWrite(Contor_In1, LOW);
   digitalWrite(Contor_In2, LOW);
   digitalWrite(Contor_In3, LOW);
@@ -108,6 +113,7 @@ void Stop(){
 }
 
 void Right(){
+  digitalWrite (13, HIGH);
   digitalWrite (3, LOW);
   digitalWrite(Contor_In1, HIGH);
   digitalWrite(Contor_In2, LOW);
@@ -116,6 +122,7 @@ void Right(){
 }
 
 void Left(){
+  digitalWrite (12, HIGH);
   digitalWrite (3, LOW);
   digitalWrite(Contor_In1, LOW);
   digitalWrite(Contor_In2, LOW);
