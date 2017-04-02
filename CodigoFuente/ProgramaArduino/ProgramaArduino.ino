@@ -86,6 +86,7 @@ void Sensor(){
 
 // FUNCIONALIDAD DE LOS MOTORES
 void Run(){
+  digitalWrite (2, HIGH);
   digitalWrite (3, LOW);
   digitalWrite(Contor_In1, HIGH);
   digitalWrite(Contor_In2, LOW);
