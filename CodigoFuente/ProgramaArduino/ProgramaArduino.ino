@@ -35,6 +35,9 @@ void setup() {
   BT1.begin(9600); // inicia el puerto serial para comunicacion con el Bluetooth
   Serial.println("Esperando comandos AT:");
   Serial.println("Activando el modulo HC-04");
+
+  // leds
+  pinMode (3, OUTPUT);
 }
 
 void loop() {
@@ -84,6 +87,7 @@ void Run(){
   digitalWrite(Contor_In2, LOW);
   digitalWrite(Contor_In3, LOW);
   digitalWrite(Contor_In4, HIGH);
+  digitalWrite (3, HIGH);
 }
 
 void Reverse(){
