@@ -78,7 +78,7 @@ void Sensor(){
       delay(1000);
       Stop();
       delay(700);
-    } if ((d == 0) or (d == 3) ){ // FIN DEL IF
+    } else if ((d == 0) or (d == 3) ){ // FIN DEL IF
       Serial.println("Numero seleccionado:  ");
       Serial.println(d);
       Stop();
@@ -87,7 +87,7 @@ void Sensor(){
       delay(1500);
       Stop();
       delay(700);
-    }
+    } // FIN DEL IF
   } 
 }
 // FUNCIONALIDAD DE LOS MOTORES
@@ -182,4 +182,3 @@ void bt (){
   if  (estado=='g'){        // Boton OFF, detiene los motores no hace nada 
   }
 }
-
