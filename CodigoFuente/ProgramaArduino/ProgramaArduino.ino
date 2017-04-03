@@ -56,11 +56,11 @@ void Sensor(){
   delayMicroseconds(10);
   time = pulseIn(9, HIGH);
   dist = (0.017*time); // REVISAR LA FORMULA (CREO QUE SE TIENE QUE DIVIR ENTRE 2)
-  delay(1000);
+  delay(10);
   Serial.print("Distancia: ");
   Serial.print(dist);
   Serial.println(" cm/hr");
-  if(dist <= 50){
+  if(dist <= 90){
     Stop();
     delay(1000);
     Reverse();
