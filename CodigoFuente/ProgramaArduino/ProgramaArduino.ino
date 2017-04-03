@@ -11,7 +11,6 @@ int Contor_In4 = 4;
 // VARIABLES PARA CONTROLAR EL SENSOR ULTRASONICO O DE PROXIMIDAD
 long dist;
 long time;
-int ledPrueba = 13;
 
 //BT
 SoftwareSerial BT1(10, 11); // RX | TX
@@ -28,7 +27,6 @@ void setup() {
   Serial.begin(9600);
   pinMode(9,INPUT); //9 ENTRADA DE DATOS ECCO
   pinMode(8, OUTPUT); //8 SALIDA DE DATOS TRIGGER
-  pinMode (13,OUTPUT); // LED DEL PIN 13
 
   // FUNCIONES BT
 
@@ -80,7 +78,16 @@ void Sensor(){
       delay(1000);
       Stop();
       delay(700);
-    } // FIN DEL IF
+    } if ((d == 0) or (d == 3) ){ // FIN DEL IF
+      Serial.println("Numero seleccionado:  ");
+      Serial.println(d);
+      Stop();
+      delay(700);
+      Reverse();
+      delay(1500);
+      Stop();
+      delay(700);
+    }
   } 
 }
 // FUNCIONALIDAD DE LOS MOTORES
