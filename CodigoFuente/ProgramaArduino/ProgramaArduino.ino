@@ -114,7 +114,12 @@ void Stop(){
 }
 
 void Right(){
-  digitalWrite (13, HIGH);
+   for (int i= 0; i<= 5; i++){
+    digitalWrite (13, HIGH);
+    delay(200);
+    digitalWrite (13, LOW);
+    delay(200);
+  }
   digitalWrite (3, LOW);
   digitalWrite(Contor_In1, HIGH);
   digitalWrite(Contor_In2, LOW);
@@ -123,7 +128,12 @@ void Right(){
 }
 
 void Left(){
-  digitalWrite (12, HIGH);
+  for (int i= 0; i<= 5; i++){
+    digitalWrite (12, HIGH);
+    delay(200);
+    digitalWrite (12, LOW);
+    delay(200);
+  }
   digitalWrite (3, LOW);
   digitalWrite(Contor_In1, LOW);
   digitalWrite(Contor_In2, LOW);
