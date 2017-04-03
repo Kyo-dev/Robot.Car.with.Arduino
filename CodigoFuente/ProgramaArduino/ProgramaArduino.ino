@@ -73,17 +73,16 @@ void Sensor(){
       delay(1000);
       Stop();
       delay(700);
-    } else if (d == 1){
+    } else if (d == 1){ // FIN DEL IF
       Serial.println("Girar a la derecha");
       Serial.println(d);
       Right();
       delay(1000);
       Stop();
       delay(700);
-    }
+    } // FIN DEL IF
   } 
 }
-
 // FUNCIONALIDAD DE LOS MOTORES
 void Run(){
   digitalWrite (2, HIGH);
@@ -91,8 +90,7 @@ void Run(){
   digitalWrite(Contor_In1, HIGH);
   digitalWrite(Contor_In2, LOW);
   digitalWrite(Contor_In3, LOW);
-  digitalWrite(Contor_In4, HIGH);
-  
+  digitalWrite(Contor_In4, HIGH); 
 }
 
 void Reverse(){
@@ -119,7 +117,7 @@ void Right(){
     delay(200);
     digitalWrite (13, LOW);
     delay(200);
-  }
+  } // FIN DEL FOR
   digitalWrite (3, LOW);
   digitalWrite(Contor_In1, HIGH);
   digitalWrite(Contor_In2, LOW);
@@ -133,7 +131,7 @@ void Left(){
     delay(200);
     digitalWrite (12, LOW);
     delay(200);
-  }
+  } // FIN DEL FOR
   digitalWrite (3, LOW);
   digitalWrite(Contor_In1, LOW);
   digitalWrite(Contor_In2, LOW);
@@ -147,7 +145,7 @@ void bt (){
    if(BT1.available()>0){        // lee el bluetooth y almacena en estado
       estado = BT1.read();
       Serial.write(BT1.read()); //opcional
-   }
+   } 
    
    if(estado=='a'){           // Boton desplazar al Frente
      Run();
