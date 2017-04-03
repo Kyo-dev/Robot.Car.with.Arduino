@@ -39,13 +39,14 @@ void setup() {
   pinMode (2, OUTPUT); // Luz blanca
   pinMode (12, OUTPUT); // Intermitente Izquierda
   pinMode (13, OUTPUT); // Intermitente Derecha
-}
+} //FIN DEL METODO SETUP
 
 void loop() {
   Run();
   Sensor();
   bt();
-}
+}//FIN DEL METODO LOOP
+
 // FUNCIONALIDAD DEL SENSOR
 void Sensor(){
   digitalWrite(8,LOW);
@@ -88,9 +89,11 @@ void Sensor(){
       Stop();
       delay(700);
     } // FIN DEL IF
-  } 
-}
+  } // FIN DEL IF PRINCIPAL
+} // FIN DEL METODO SENSOR
+
 // FUNCIONALIDAD DE LOS MOTORES
+
 void Run(){
   digitalWrite (2, HIGH);
   digitalWrite (3, LOW);
@@ -98,7 +101,7 @@ void Run(){
   digitalWrite(Contor_In2, LOW);
   digitalWrite(Contor_In3, LOW);
   digitalWrite(Contor_In4, HIGH); 
-}
+}//FIN DEL METODO RUN
 
 void Reverse(){
   digitalWrite (3, LOW);
@@ -106,7 +109,7 @@ void Reverse(){
   digitalWrite(Contor_In2, HIGH);
   digitalWrite(Contor_In3, HIGH);
   digitalWrite(Contor_In4, LOW);
-}
+}//FIN DEL METODO REVERSE
 
 void Stop(){
   digitalWrite (3, HIGH);
@@ -116,7 +119,7 @@ void Stop(){
   digitalWrite(Contor_In2, LOW);
   digitalWrite(Contor_In3, LOW);
   digitalWrite(Contor_In4, LOW);
-}
+}//FIN DEL METODO STOP
 
 void Right(){
    for (int i= 0; i<= 5; i++){
@@ -130,7 +133,7 @@ void Right(){
   digitalWrite(Contor_In2, LOW);
   digitalWrite(Contor_In3, LOW);
   digitalWrite(Contor_In4, LOW);
-}
+}//FIN DEL METODO RIGHT
 
 void Left(){
   for (int i= 0; i<= 5; i++){
@@ -144,7 +147,7 @@ void Left(){
   digitalWrite(Contor_In2, LOW);
   digitalWrite(Contor_In3, LOW);
   digitalWrite(Contor_In4, HIGH);
-}
+}//FIN DEL METODO LEFT
 
 // CONDEXION BT
 
@@ -152,33 +155,31 @@ void bt (){
    if(BT1.available()>0){        // lee el bluetooth y almacena en estado
       estado = BT1.read();
       Serial.write(BT1.read()); //opcional
-   } 
+   }//FIN DEL IF 
    
    if(estado=='a'){           // Boton desplazar al Frente
      Run();
-   }
+   }//FIN DEL IF
   
   if(estado=='b'){          // Boton IZQ 
      Left();   
-
-  }
+  }//FIN DEL IF
   
   if(estado=='c'){         // Boton Parar
      Stop();
-  }
+  }//FIN DEL IF
   
   if(estado=='d'){          // Boton DER
      Right(); 
-  } 
+  }//FIN DEL IF
   
   if(estado=='e'){          // Boton Reversa
      Reverse();
-  }
+  }//FIN DEL IF
   
   if (estado =='f'){        // Boton ON se mueve sensando distancia 
- 
-  }
+  }//FIN DEL IF
   
   if  (estado=='g'){        // Boton OFF, detiene los motores no hace nada 
-  }
-}
+  }//FIN DEL IF
+}//FIN DEL METODO BT
