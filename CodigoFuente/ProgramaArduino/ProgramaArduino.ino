@@ -11,10 +11,10 @@ int Contor_In4 = 4;
 // VARIABLES PARA CONTROLAR EL SENSOR ULTRASONICO O DE PROXIMIDAD
 long dist;
 long time;
+char e = 'S';
 
 //BT
-SoftwareSerial BT1(10, 11); // RX | TX
-int estado = 'g'; 
+SoftwareSerial BT(10, 11); // RX | TX
 
 void setup() {
   // PIN DE LOS MOTORES
@@ -30,7 +30,7 @@ void setup() {
 
   // FUNCIONES BT
 
-  BT1.begin(9600); // inicia el puerto serial para comunicacion con el Bluetooth
+  BT.begin(9600); // inicia el puerto serial para comunicacion con el Bluetooth
   Serial.println("Esperando comandos AT:");
   Serial.println("Activando el modulo HC-04");
 
@@ -42,27 +42,28 @@ void setup() {
 } //FIN DEL METODO SETUP
 
 void loop() {
-  Run();
-  Sensor();
-  bt();
+  Bt();
 }//FIN DEL METODO LOOP
 
 // FUNCIONALIDAD DEL SENSOR
 void Sensor(){
+  Run();
   digitalWrite(8,LOW);
   delayMicroseconds(5);
   digitalWrite(8, HIGH);
   delayMicroseconds(10);
   time = pulseIn(9, HIGH);
-  dist = (0.017*time); // REVISAR LA FORMULA (CREO QUE SE TIENE QUE DIVIR ENTRE 2)
+  dist = (0.017*time);
   delay(10);
   Serial.print("Distancia: ");
   Serial.print(dist);
   Serial.println(" cm/hr");
-  if(dist <= 90){
+  if(dist < 40){
     Stop();
     delay(1000);
     Reverse();
+    delay(500);
+    Stop();
     delay(1000);
     int d = random(0, 3);
     if(d == 2){ 
@@ -85,7 +86,7 @@ void Sensor(){
       Stop();
       delay(700);
       Reverse();
-      delay(1500);
+      delay(800);
       Stop();
       delay(700);
     } // FIN DEL IF
@@ -122,12 +123,18 @@ void Stop(){
 }//FIN DEL METODO STOP
 
 void Right(){
-   for (int i= 0; i<= 5; i++){
-    digitalWrite (13, HIGH);
-    delay(200);
-    digitalWrite (13, LOW);
-    delay(200);
-  } // FIN DEL FOR
+  digitalWrite (13, HIGH);
+  delay(200);
+  digitalWrite (13, LOW);
+  delay(200);
+  digitalWrite (13, HIGH);
+  delay(200);
+  digitalWrite (13, LOW);
+  delay(200);
+  digitalWrite (13, HIGH);
+  delay(200);
+  digitalWrite (13, LOW);
+  delay(200);
   digitalWrite (3, LOW);
   digitalWrite(Contor_In1, HIGH);
   digitalWrite(Contor_In2, LOW);
@@ -136,12 +143,18 @@ void Right(){
 }//FIN DEL METODO RIGHT
 
 void Left(){
-  for (int i= 0; i<= 5; i++){
-    digitalWrite (12, HIGH);
-    delay(200);
-    digitalWrite (12, LOW);
-    delay(200);
-  } // FIN DEL FOR
+  digitalWrite (12, HIGH);
+  delay(200);
+  digitalWrite (12, LOW);
+  delay(200);
+  digitalWrite (12, HIGH);
+  delay(200);
+  digitalWrite (12, LOW);
+  delay(200);
+  digitalWrite (12, HIGH);
+  delay(200);
+  digitalWrite (12, LOW);
+  delay(200);
   digitalWrite (3, LOW);
   digitalWrite(Contor_In1, LOW);
   digitalWrite(Contor_In2, LOW);
@@ -151,35 +164,41 @@ void Left(){
 
 // CONDEXION BT
 
-void bt (){
-   if(BT1.available()>0){        // lee el bluetooth y almacena en estado
-      estado = BT1.read();
-      Serial.write(BT1.read()); //opcional
-   }//FIN DEL IF 
-   
-   if(estado=='a'){           // Boton desplazar al Frente
-     Run();
-   }//FIN DEL IF
-  
-  if(estado=='b'){          // Boton IZQ 
-     Left();   
-  }//FIN DEL IF
-  
-  if(estado=='c'){         // Boton Parar
-     Stop();
-  }//FIN DEL IF
-  
-  if(estado=='d'){          // Boton DER
-     Right(); 
-  }//FIN DEL IF
-  
-  if(estado=='e'){          // Boton Reversa
-     Reverse();
-  }//FIN DEL IF
-  
-  if (estado =='f'){        // Boton ON se mueve sensando distancia 
-  }//FIN DEL IF
-  
-  if  (estado=='g'){        // Boton OFF, detiene los motores no hace nada 
-  }//FIN DEL IF
+void Bt(){
+
+if(BT.available() > 0){
+    e = BT.read();
+  }
+
+    if(e == 'A'){
+      e = '*';
+      Run();
+    }
+
+    
+    if(e == 'I'){
+      e = '*';
+      Left();
+    }
+
+    
+    if(e == 'D'){
+      e = '*';
+      Right();
+    }
+    
+    if(e == 'R'){
+      e = '*';
+      Reverse();
+    }
+
+    if(e == 'S'){
+      e = '*';
+      Stop();
+    }
+    
+    if(e == '1'){
+      Sensor();  
+    }
 }//FIN DEL METODO BT
+
